@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Para Você</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: aparecer 2s ease;
+        }
+        h1 {
+            color: #ff4b5c;
+            font-size: 36px;
+        }
+        p {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #555;
+        }
+        @keyframes aparecer {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Eu amo você mari, vc é minha florzinha linda</h1>
+    <p>Você é incrível e faz meus dias muito melhores. Nunca esqueça disso!🥰</p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const hearts = [];
+    const colors = ['#ff4b5c', '#ff6f91', '#ff9a9e'];
+
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.innerHTML = '❤️';
+        heart.style.position = 'fixed';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.top = '100vh';
+        heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+        heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+        heart.style.zIndex = 9999;
+        document.body.appendChild(heart);
+        hearts.push(heart);
+    }
+
+    function animateHearts() {
+        for (let i = 0; i < hearts.length; i++) {
+            const heart = hearts[i];
+            const top = parseFloat(heart.style.top);
+            if (top < -50) {
+                document.body.removeChild(heart);
+                hearts.splice(i, 1);
+                i--;
+            } else {
+                heart.style.top = (top - 1) + 'px';
+            }
+        }
+    }
+
+    setInterval(createHeart, 500);
+    setInterval(animateHearts, 50);
+});
+</script>
+
+
+</body>
+</html>
